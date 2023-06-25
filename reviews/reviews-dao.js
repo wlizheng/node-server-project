@@ -34,10 +34,10 @@ export const getAvgRating = (placeId) => {
          let res = null;
          for (let i = 0; i < result.length; i++) {
             if (result[i]._id.toString() === placeId.toString()) {
-               res = result[i].avgRating;
+               res = result[i].avgRating.toFixed(2);
             }
          }
-         return res.toFixed(2);
+         return res;
       } else {
          return null;
       }

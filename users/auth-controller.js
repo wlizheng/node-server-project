@@ -3,15 +3,19 @@ import usersModel from "./users-model.js";
 
 const AuthController = (app) => {
    const register = async (req, res) => {
-      const {username, email, password, role} = req.body;
-      const user = await usersDao.findUserByEmail(email);
-      if (user) {
-         res.status(403).json({error: "This email has been registered"});
-      } else {
-         const newUser = await usersDao.createUser(
-            {username, email, password, role});
-         // req.session["currentUser"] = user;
-         res.json(newUser);
+      const { username, email, password, role } = req.body;
+      try {
+         const user = await usersDao.findUserByEmail(email);
+         if (user) {
+            res.status(409);
+            return;
+         } else {
+            const newUser = await usersDao.createUser({ username, email, password, role });
+            res.json(newUser);
+         }
+      } catch (error) {
+         console.error(error);
+         res.status(409).json({ error: "This email has been registered" });
       }
    };
 
@@ -51,7 +55,6 @@ const AuthController = (app) => {
    };
 
    const update = async (req, res) => {
-      console.log("update!");
       try {
          const {id} = req.params;
          const {username, email} = req.body;

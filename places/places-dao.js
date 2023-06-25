@@ -13,8 +13,6 @@ export const findPlaceById = (id) => {
 };
 
 export const findPlaceByOwner = (ownerId) => {
-   console.log("findPlaceByOwner");
-   console.log(ownerId);
    return placesModel.find({owner: ownerId});
 };
 

@@ -1,5 +1,4 @@
 import * as reviewsDao from "./reviews-dao.js"
-import {getAvgRating} from "./reviews-dao.js";
 
 export default (app) => {
    const creatReview = async (req, res) => {
@@ -48,14 +47,12 @@ export default (app) => {
 
    const getReviewByReservationAndUser = async (req, res) => {
       try {
-         console.log("getReviewByReservationAndUser");
          const {reservationId, userId} = req.query;
          const reviews = await reviewsDao.getReviewByReservationAndUser(
             reservationId,
             userId
          );
          res.json(reviews);
-         console.log(reviews);
       } catch (error) {
          console.error("Error retrieving review by reservation and user:",
             error);
@@ -66,7 +63,6 @@ export default (app) => {
    const getAvgRating = async (req, res) => {
       try {
          const {id} = req.params;
-         console.log("getAvgRating: " + id);
          const avgRating = await reviewsDao.getAvgRating(id);
          res.json({avgRating});
       } catch (error) {

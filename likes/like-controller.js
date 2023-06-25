@@ -19,7 +19,7 @@ export default (app) => {
          if (deletedLike) {
             res.sendStatus(204);
          } else {
-            res.sendStatus(404); // Not Found
+            res.sendStatus(404);
          }
       } catch (error) {
          console.error("Error deleting like:", error);

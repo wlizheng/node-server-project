@@ -14,7 +14,6 @@ export default (app) => {
 
    const getReservationsByUser = async (req, res) => {
       try {
-         console.log("getReservationsByUser");
          const userId = req.session.currentUser;
          const reservations = await reservationsDao.findReservationsByUser(userId);
          res.json(reservations);
@@ -26,9 +25,7 @@ export default (app) => {
 
    const findAllReservations = async (req, res) => {
       try {
-         console.log("findAllReservations");
          const reservations = await reservationsDao.findReservations();
-         console.log(findAllReservations);
          res.json(reservations);
       } catch (error) {
          console.error("Error fetching reservations:", error);
@@ -39,7 +36,6 @@ export default (app) => {
    const deleteReservation = async (req, res) => {
       try {
          const {id} = req.params;
-         console.log("deleteReservations");
          const deletedReservation = await reservationsDao.deleteReservation(id);
          res.json(deletedReservation);
       } catch (error) {

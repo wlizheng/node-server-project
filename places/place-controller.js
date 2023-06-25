@@ -7,7 +7,6 @@ export default (app) => {
    const findAllPlaces = async (req, res) => {
       try {
          const places = await placesDao.findPlaces();
-         console.log("findAllPlaces");
          res.json(places);
       } catch (error) {
          console.error("Error finding places:", error);
@@ -18,9 +17,7 @@ export default (app) => {
    const findPlaceById = async (req, res) => {
       try {
          const {id} = req.params;
-         console.log("findPlaceById: " + id);
          const place = await placesDao.findPlaceById(id);
-         console.log("findPlaceById");
          res.json(place);
       } catch (error) {
          console.error("Error finding place by ID:", error);
@@ -31,11 +28,8 @@ export default (app) => {
    const deletePlace = async (req, res) => {
       try {
          const {id} = req.params;
-         console.log("deleteReservations");
          const deleteReservations = await reservationsModel.deleteMany({place: id});
-         console.log("deleteLikes");
          const deleteLikes = await likesModel.deleteMany({place: id});
-         console.log("deleteReviews");
          const deleteReviews = await reviewsModel.deleteMany({place: id});
 
          const deletedPlace = await placesDao.deletePlace(id);
@@ -52,10 +46,8 @@ export default (app) => {
 
    const findPlacesByOwnerId = async (req, res) => {
       try {
-         console.log("findPlacesByOwnerId");
          const {ownerId} = req.params;
          const places = await placesDao.findPlaceByOwner(ownerId);
-         console.log(places);
          res.json(places);
       } catch (error) {
          console.error("Error deleting like:", error);
@@ -65,9 +57,6 @@ export default (app) => {
 
    const createPlace = async (req, res) => {
       try {
-         console.log("createPlace");
-         console.log(req.body);
-         // TODO when reserve in search, both guest and owner are user self
          const ownerId = req.session.currentUser;
          const newPlace = await placesDao.creatPlace(req.body, ownerId);
          res.json(newPlace);

@@ -7,7 +7,6 @@ import session from "express-session";
 import ReservationController from "./reservations/reservation-controller.js";
 import ReviewController from "./reviews/review-controller.js";
 import LikeController from "./likes/like-controller.js";
-import http from 'http'
 import axios from "axios";
 
 mongoose.connect(

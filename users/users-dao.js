@@ -13,7 +13,6 @@ export const findUserByCredentials = ({email, password}) => {
 };
 
 export const updateUser = (id, user) => {
-   usersModel.find
    return usersModel.updateOne({_id: id}, {$set: user});
 };
 
