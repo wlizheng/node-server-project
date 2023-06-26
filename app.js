@@ -43,9 +43,7 @@ app.use((req, res, next) => {
 
 app.get('/search', async (req, res) => {
    try {
-      console.log("search");
       const {location} = req.query;
-      console.log({location});
       const response = await axios.get(
          `https://api.airbnb.com/v2/explore_tabs?_format=for_explore_search_web&items_per_grid=50&key=d306zoyjsyarp7ifhu67rjxn52tv0t20&location=${location}&section_offset=4&supports_for_you_v3=true&tab_id=home_tab&timezone_offset=300&version=1.3.4&items_offset=0&currency=USD`
       );
@@ -58,9 +56,7 @@ app.get('/search', async (req, res) => {
 
 app.get('/search/detail/:id', async (req, res) => {
    try {
-      console.log("search-detail");
       const {id} = req.params;
-      console.log({id});
       const response = await axios.get(
          `https://api.airbnb.com/v2/pdp_listing_details/${id}?_format=for_native&tier_override=0&key=d306zoyjsyarp7ifhu67rjxn52tv0t20`
       );
@@ -73,9 +69,7 @@ app.get('/search/detail/:id', async (req, res) => {
 
 app.get('/search/reviews/:id', async (req, res) => {
    try {
-      console.log("search-review");
       const {id} = req.params;
-      console.log({id});
       const response = await axios.get(
          `https://api.airbnb.com/v2/homes_pdp_reviews?_format=for_mobile_client&listing_id=${id}&role=all&limit=20&offset=0&key=d306zoyjsyarp7ifhu67rjxn52tv0t20 `
       );
